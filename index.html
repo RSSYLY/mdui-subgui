@@ -1,0 +1,161 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <title>订阅转换
+    </title>
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/mdui/1.0.1/css/mdui.min.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/mdui/1.0.1/js/mdui.min.js"></script>
+</head>
+
+<body id="setdarkmodeclass" class="mdui-theme-primary-deep-purple mdui-theme-accent-indigo">
+    <div class="mdui-container mdui-typo">
+        <div class="mdui-card">
+            <!-- 卡片的标题和副标题 -->
+            <div class="mdui-card-primary">
+                <div class="mdui-card-primary-title">订阅链接转换</div>
+                <div class="mdui-card-primary-subtitle">将翻墙软件订阅转为clash可识别的格式</div>
+            </div>
+
+            <!-- 卡片的内容 -->
+            <div class="mdui-card-content">
+
+                <div class="mdui-textfield mdui-textfield-floating-label">
+                    <h3>说明</h3>
+                    <p>1.后端使用<a href="/tindy2013/subconverter">subconverter</a><br>2.源订阅链接支持类型: Clash
+                        ，ClashR
+                        ，Quantumult (完整配置)
+                        ，Quantumult X (完整配置)
+                        ，Loon
+                        ，Mellow
+                        ，SS (SIP002)
+                        ，SS (软件订阅)
+                        ，SSD
+                        ，SSR
+                        ，Surfboard
+                        ，Surge
+                        ，Surge
+                        ，Surge
+                        ，Trojan
+                        ，V2Ray
+                        <br>3.请勿滥用，若遇频繁请求则可能封IP
+                    </p>
+                    <h3>配置</h3>
+                    <h5>源订阅链接</h5>
+                    <label class="mdui-textfield-label">https://example.com</label>
+                    <input class="mdui-textfield-input" type="text" id="subinput" />
+                    <h5>输出类型</h5>
+                    <select id="subOutputType" class="mdui-select" mdui-select="{position: 'top'}">
+                        <option value="&target=clash">Clash</option>
+                        <option value="&target=v2ray">V2ray</option>
+                        <option value="&target=surfboard">Surfboard</option>
+                        <option value="&target=quan">Quantumult</option>
+                        <option value="&target=quanx">Quantumult X</option>
+                        <option value="&target=ssr">SSR</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <!-- 卡片的按钮 -->
+            <div class="mdui-card-actions">
+                <button class="mdui-btn mdui-ripple" id="subbtn">生成</button>
+                <button class="mdui-btn mdui-btn-icon mdui-float-right"><i
+                        class="mdui-icon material-icons" onclick="">comment</i></button>
+            </div>
+
+        </div>
+
+
+
+        <div class="mdui-dialog" id="subapi">
+            <div class="mdui-dialog-title">生成的订阅链接</div>
+            <div class="mdui-dialog-content">
+                <form name="outputform">
+                    <div class="mdui-textfield">
+                        <input id="output" class="mdui-textfield-input" type="text" name="outputinput" />
+                    </div>
+                </form>
+            </div>
+            <div class="mdui-dialog-actions">
+                <button class="mdui-btn mdui-ripple" mdui-dialog-cancel>取消</button>
+                <button class="mdui-btn mdui-ripple" id="copyBtn">复制</button>
+            </div>
+        </div>
+    </div>
+    <script>document.getElementById('subbtn').addEventListener('click', function () {
+            //定义变量，值为输入源订阅链接表单
+            var inPut = document.getElementById("subinput").value;
+            var outPutType = document.getElementById("subOutputType").value;
+            // 检测表单是否为空，若是则报错
+            if (inPut == null || inPut == "") {
+                mdui.snackbar({
+                    message: '错误:请填写链接',
+                    position: 'right-top'
+                });
+                return false;
+            }
+            // 定义新对话框
+            var inst = new mdui.Dialog('#subapi');
+            // 定义函数，值为后端地址 &target=clash
+            var sub = "https://subapi.666old666.cn/sub?insert=true&emoji=true&list=false&url="
+            // 合并订阅链接
+            inPut = sub + encodeURIComponent(inPut) + outPutType;
+            // 将输出链接写入对话框的表单
+            outputform.outputinput.value = inPut;
+            // 打开对话框
+            inst.open();
+        });
+        document.getElementById('copyBtn').addEventListener('click', function () {
+
+            // const input = document.createElement('input')
+            // document.body.appendChild(input)
+            // input.setAttribute('value', json)
+            // input.setAttribute('readonly', 'readonly')
+            // input.select()
+            // input.setSelectionRange(0, 9999) // 如果select 没有选择到
+            // if (document.execCommand('copy')) {
+            //     this.$message({
+            //         type: 'success',
+            //         message: '报文已复制到剪切板'
+            //     })
+            // }
+            // document.body.removeChild(input)
+
+
+        });
+    </script>
+
+</body>
+<script type="text/javascript">
+    /*判断是否处于深色模式*/
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        //Do some thing
+        //测试用 console.log('点击了元素');
+        //js添加指定id的class
+        document.getElementById("setdarkmodeclass").classList.add("mdui-theme-layout-dark");
+        // document.getElementById("left-drawer").classList.add(//"mystyle", "anotherClass","mdui-theme-layout-dark");
+        //js删除指定id的class
+        // document.getElementById("setdarkmodeclass2").classList.remove("mdui-color-theme-800");
+        // document.getElementById("left-drawer").classList.remove("mdui-color-white");
+        // document.getElementById("setdarkmodesetting").classList.remove("setdarkmodesetting");
+
+    }</script>
+<script type="text/javascript">function switchserve() {
+        var divP = document.getElementById("mainsb");
+        document.write("")
+    }
+</script>
+<script>const btn = document.querySelector('#copyBtn');
+    btn.addEventListener('click', () => {
+        const input = document.querySelector('#output');
+        input.select();
+        if (document.execCommand('copy')) {
+            document.execCommand('copy');
+            console.log('复制成功');
+        }
+    })</script>
+
+</html>
