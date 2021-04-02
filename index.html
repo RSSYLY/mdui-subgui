@@ -15,14 +15,15 @@
         <div class="mdui-card">
             <!-- 卡片的标题和副标题 -->
             <div class="mdui-card-primary">
-                <div class="mdui-card-primary-title">订阅链接转换</div>
-                <div class="mdui-card-primary-subtitle">将翻墙软件订阅转为clash可识别的格式</div>
+                <div class="mdui-card-primary-title">MDUI SubGUI</div>
+                <div class="mdui-card-primary-subtitle">subconverter的可视化使用界面</div>
+                
             </div>
 
             <!-- 卡片的内容 -->
             <div class="mdui-card-content">
 
-                <div class="mdui-textfield mdui-textfield-floating-label">
+                <div>
                     <h3>说明</h3>
                     <p>1.后端使用<a href="/tindy2013/subconverter">subconverter</a><br>2.源订阅链接支持类型: Clash
                         ，ClashR
@@ -43,18 +44,73 @@
                         <br>3.请勿滥用，若遇频繁请求则可能封IP
                     </p>
                     <h3>配置</h3>
-                    <h5>源订阅链接</h5>
-                    <label class="mdui-textfield-label">https://example.com</label>
-                    <input class="mdui-textfield-input" type="text" id="subinput" />
-                    <h5>输出类型</h5>
-                    <select id="subOutputType" class="mdui-select" mdui-select="{position: 'top'}">
-                        <option value="&target=clash">Clash</option>
-                        <option value="&target=v2ray">V2ray</option>
-                        <option value="&target=surfboard">Surfboard</option>
-                        <option value="&target=quan">Quantumult</option>
-                        <option value="&target=quanx">Quantumult X</option>
-                        <option value="&target=ssr">SSR</option>
-                    </select>
+                    <div class="mdui-row">
+                        <div class="mdui-textfield mdui-textfield-floating-label mdui-col-sm-6">
+                            <h5>源订阅链接</h5>
+                            <label class="mdui-textfield-label">填写订阅链接或 ss:// 等节点链接</label>
+                            <input class="mdui-textfield-input" type="text" id="subinput" />
+                        </div>
+                        <div class="mdui-textfield mdui-textfield-floating-label mdui-col-sm-6">
+                            <h5>配置文件名称</h5>
+                            <label class="mdui-textfield-label">作为clash等策略组软件的配置文件名</label>
+                            <input class="mdui-textfield-input" type="text" id="subNameInput" value="sub" />
+                        </div>
+                    </div>
+                    <div class="mdui-row">
+                        <div class="mdui-textfield mdui-textfield-floating-label mdui-col-sm-6">
+                            <h5>后端地址</h5>
+                            <label class="mdui-textfield-label">自定义后端url</label>
+                            <input class="mdui-textfield-input" type="text" id="subServerSideInput"
+                                value="subapi.666old666.cn" />
+                        </div>
+                        <div class="mdui-textfield mdui-textfield-floating-label mdui-col-sm-6">
+                            <h5>远程配置</h5>
+                            <label class="mdui-textfield-label">填写远程配置文件路径或内容</label>
+                            <input class="mdui-textfield-input" type="text" id="subConfigInput" value="" />
+                        </div>
+
+                    </div>
+                    <div class="mdui-row">
+                        <div class="mdui-col-sm-6">
+                            <h5>输出类型</h5>
+                            <select id="subOutputType" class="mdui-select" mdui-select="{position: 'top'}">
+                                <option value="&target=clash">Clash</option>
+                                <option value="&target=v2ray">V2ray</option>
+                                <option value="&target=surfboard">Surfboard</option>
+                                <option value="&target=quan">Quantumult</option>
+                                <option value="&target=quanx">Quantumult X</option>
+                                <option value="&target=ssr">SSR</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="mdui-row">
+                        <div class="mdui-col-sm-4">
+                            <h5>启用UDP </h5>
+                            <label class="mdui-switch">
+                                <input id="udpEnableSwich" type="checkbox" />
+                                <i class="mdui-switch-icon"></i>
+                            </label>
+                        </div>
+                        <div class="mdui-col-sm-4">
+                            <h5>节点名添加emoji国旗 </h5>
+                            <label class="mdui-switch">
+                                <input id="addemojiEnableSwich" type="checkbox" checked />
+                                <i class="mdui-switch-icon"></i>
+                            </label>
+                        </div>
+                        <div class="mdui-col-sm-4">
+                            <h5>节点名添加协议类型 </h5>
+                            <label class="mdui-switch">
+                                <input id="appendtypeEnableSwich" type="checkbox" />
+                                <i class="mdui-switch-icon"></i>
+                            </label>
+                        </div>
+                    </div>
+
+
+
                 </div>
 
             </div>
@@ -62,8 +118,8 @@
             <!-- 卡片的按钮 -->
             <div class="mdui-card-actions">
                 <button class="mdui-btn mdui-ripple" id="subbtn">生成</button>
-                <button class="mdui-btn mdui-btn-icon mdui-float-right"><i
-                        class="mdui-icon material-icons" onclick="">comment</i></button>
+                <button class="mdui-btn mdui-btn-icon mdui-float-right"><i class="mdui-icon material-icons"
+                        onclick="window.open('https://github.com/RSSYLY/mdui-subgui');">comment</i></button>
             </div>
 
         </div>
@@ -86,45 +142,62 @@
         </div>
     </div>
     <script>document.getElementById('subbtn').addEventListener('click', function () {
+
+            // 定义变量 值为后端地址
+            var subServerSide = document.getElementById("subServerSideInput").value;
+
             //定义变量，值为输入源订阅链接表单
             var inPut = document.getElementById("subinput").value;
+
+            // 定义变量，值为生成配置文件名
+            var subName = "&filename=" + document.getElementById("subNameInput").value;
+
+            // 定义变量 值为远程配置
+            var subConfig = document.getElementById("subConfigInput").value;
+            // 值若为空，则赋值使用默认配置文件
+            if (subConfig == null || subConfig == "") {
+                var subConfig = "https://github.com/RSSYLY/rssylySCTrules/raw/master/config/rssyly1.ini"
+            }
+
+
+            // 定义变量，设置输出类型
             var outPutType = document.getElementById("subOutputType").value;
+
+            // 定义变量，设置 udp 开关
+            var udpEnable = "&udp=" + document.getElementById("udpEnableSwich").checked;
+
+            // 定义变量 设置 节点前添加emoji国旗
+            var addemojiEnable = "&add_emoji=" + document.getElementById("addemojiEnableSwich").checked;
+
+            // 定义变量 设置 节点前加节点协议类型
+            var appendtypeEnable = "&append_type=" + document.getElementById("appendtypeEnableSwich").checked;
+
+
             // 检测表单是否为空，若是则报错
             if (inPut == null || inPut == "") {
                 mdui.snackbar({
-                    message: '错误:请填写链接',
+                    message: '错误:请填写源链接',
                     position: 'right-top'
                 });
                 return false;
             }
+
+
+
             // 定义新对话框
             var inst = new mdui.Dialog('#subapi');
+
             // 定义函数，值为后端地址 &target=clash
-            var sub = "https://subapi.666old666.cn/sub?insert=true&emoji=true&list=false&url="
+            var sub = "https://" + subServerSide + "/sub?insert=true&emoji=true&list=false&url="
+
             // 合并订阅链接
-            inPut = sub + encodeURIComponent(inPut) + outPutType;
+            inPut = sub + encodeURIComponent(inPut) + outPutType + udpEnable + subName + addemojiEnable + appendtypeEnable + "&config=" + encodeURIComponent(subConfig);
+
             // 将输出链接写入对话框的表单
             outputform.outputinput.value = inPut;
+
             // 打开对话框
             inst.open();
-        });
-        document.getElementById('copyBtn').addEventListener('click', function () {
-
-            // const input = document.createElement('input')
-            // document.body.appendChild(input)
-            // input.setAttribute('value', json)
-            // input.setAttribute('readonly', 'readonly')
-            // input.select()
-            // input.setSelectionRange(0, 9999) // 如果select 没有选择到
-            // if (document.execCommand('copy')) {
-            //     this.$message({
-            //         type: 'success',
-            //         message: '报文已复制到剪切板'
-            //     })
-            // }
-            // document.body.removeChild(input)
-
-
         });
     </script>
 
@@ -148,13 +221,18 @@
         document.write("")
     }
 </script>
-<script>const btn = document.querySelector('#copyBtn');
+<script>
+    // 复制生成链接
+    const btn = document.querySelector('#copyBtn');
     btn.addEventListener('click', () => {
         const input = document.querySelector('#output');
         input.select();
         if (document.execCommand('copy')) {
             document.execCommand('copy');
-            console.log('复制成功');
+            mdui.snackbar({
+                message: '已复制至剪切板',
+                position: 'right-top'
+            });
         }
     })</script>
 
