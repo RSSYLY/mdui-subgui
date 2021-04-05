@@ -18,9 +18,11 @@
             <div class="mdui-card-primary">
                 <div class="mdui-card-primary-title">MDUI SubGUI</div>
                 <div class="mdui-card-primary-subtitle">subconverter的可视化使用界面</div>
-
+                <div class="mdui-card-menu mdui-m-t-1">
+                    0.0.2
+                </div>
             </div>
-
+            <div class="mdui-divider"></div>
             <!-- 卡片的内容 -->
             <div class="mdui-card-content">
 
@@ -49,11 +51,13 @@
 
                         <div class="mdui-textfield mdui-textfield-floating-label mdui-col-sm-6">
                             <h5>源订阅链接</h5>
+                            <i class="mdui-icon material-icons">insert_link</i>
                             <label class="mdui-textfield-label">填写订阅链接或 ss:// 等节点链接</label>
                             <input class="mdui-textfield-input" type="text" id="subinput" />
                         </div>
                         <div class="mdui-textfield mdui-textfield-floating-label mdui-col-sm-6">
                             <h5>配置文件名称</h5>
+                            <i class="mdui-icon material-icons">flag</i>
                             <label class="mdui-textfield-label">作为clash等策略组软件的配置文件名</label>
                             <input class="mdui-textfield-input" type="text" id="subNameInput" value="sub" />
                         </div>
@@ -81,15 +85,23 @@
 
                             </div>
                             <div class="mdui-col-sm-3  mdui-col-md-2">
-                                <h5>远程配置</h5>
+                                <h5 mdui-tooltip="{content: '仅对含策略组的软件生效', position: 'top'}">远程配置</h5>
                                 <select id="subConfigInputSelect" class="mdui-select" mdui-select="{position: 'top'}">
                                     <option
                                         value="https://github.com/RSSYLY/rssylySCTrules/raw/master/config/rssyly1.ini">
-                                        落日余晖</option>
-                                    <option value="subcon.dlj.tf">subconverter作者</option>
-                                    <option value="api.v1.mk">肥羊</option>
-                                    <option value="api.wcc.best">sub-web作者</option>
-                                    <option value="sub.id9.cc">品云</option>
+                                        RSSYLY默认</option>
+                                    <option value="https://cdn.staticaly.com/gh/lhl77/sub-ini/main/tsutsu-full.ini">つつ
+                                    </option>
+                                    <option
+                                        value="https://raw.githubusercontent.com/hyt-allen-xu/webcdn/master/smallairport.ini">
+                                        AllenXu小机场</option>
+                                    <option
+                                        value="https://cdn.staticaly.com/gh/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online.ini">
+                                        ACL4SSR默认</option>
+                                    <option
+                                        value="https://cdn.staticaly.com/gh/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_AdblockPlus.ini">
+                                        ACL4SSR去广告</option>
+
                                     <option value="">自定义</option>
                                 </select>
                             </div>
@@ -102,7 +114,7 @@
                         </form>
                     </div>
                     <div class="mdui-row">
-                        <div class="mdui-col-sm-6">
+                        <div class="mdui-col-sm-3">
                             <h5>输出类型</h5>
                             <select id="subOutputType" class="mdui-select" mdui-select="{position: 'top'}">
                                 <option value="&target=clash">Clash</option>
@@ -110,8 +122,20 @@
                                 <option value="&target=surfboard">Surfboard</option>
                                 <option value="&target=quan">Quantumult</option>
                                 <option value="&target=quanx">Quantumult X</option>
+                                <option value="&target=trojan">Trojan</option>
+                                <option value="&target=loon">Loon</option>
+                                <option value="&target=mellow">Mellow</option>
+                                <option value="&target=sssub">SS (软件订阅)</option>
+                                <option value="&target=ss">SS (SIP002)</option>
+                                <option value="&target=ssd">SSD</option>
                                 <option value="&target=ssr">SSR</option>
                             </select>
+                        </div>
+                        <div class="mdui-col-sm-9">
+                            <h5>配置更新间隔(秒)</h5>
+                            <label class="mdui-slider mdui-slider-discrete" style="margin-top: 3px">
+                                <input id="intervalValueSlider" type="range" step="3600" min="0" max="432000"/>
+                            </label>
                         </div>
 
                     </div>
@@ -148,7 +172,7 @@
 
             <!-- 卡片的按钮 -->
             <div class="mdui-card-actions">
-                <button class="mdui-btn mdui-ripple" id="subbtn">生成</button>
+                <button class="mdui-btn mdui-ripple mdui-color-theme-accent" id="subbtn">生成</button>
                 <button class="mdui-btn mdui-btn-icon mdui-float-right"><i class="mdui-icon material-icons"
                         onclick="window.open('https://github.com/RSSYLY/mdui-subgui');">comment</i></button>
             </div>
@@ -172,6 +196,11 @@
             </div>
         </div>
     </div>
+
+
+
+
+
     <script>document.getElementById('subbtn').addEventListener('click', function () {
 
             // 定义变量 值为后端地址
@@ -213,6 +242,9 @@
                 return false;
             }
 
+            // 定义变量 值为更新间隔 秒
+            
+            var intervalValue = "&interval=" + document.getElementById("intervalValueSlider").value;
 
 
             // 定义新对话框
@@ -222,7 +254,7 @@
             var sub = "https://" + subServerSide + "/sub?insert=true&emoji=true&list=false&url="
 
             // 合并订阅链接
-            inPut = sub + encodeURIComponent(inPut) + outPutType + udpEnable + subName + addemojiEnable + appendtypeEnable + "&config=" + encodeURIComponent(subConfig);
+            inPut = sub + encodeURIComponent(inPut) + outPutType + udpEnable + subName + addemojiEnable + appendtypeEnable + "&config=" + encodeURIComponent(subConfig) + intervalValue;
 
             // 将输出链接写入对话框的表单
             outputform.outputinput.value = inPut;
