@@ -162,6 +162,13 @@
                                 <i class="mdui-switch-icon"></i>
                             </label>
                         </div>
+                        <div class="mdui-col-sm-4">
+                            <h5>TCP Fast Open</h5>
+                            <label class="mdui-switch">
+                                <input id="tfoEnableSwich" type="checkbox" />
+                                <i class="mdui-switch-icon"></i>
+                            </label>
+                        </div>
                     </div>
 
 
@@ -231,6 +238,9 @@
 
             // 定义变量 设置 节点前加节点协议类型
             var appendtypeEnable = "&append_type=" + document.getElementById("appendtypeEnableSwich").checked;
+            
+            // 定义变量 设置 节点TCP Fast Open 是否启用
+            var appendtypeEnable = "&tfo=" + document.getElementById("tfoEnableSwich").checked;
 
 
             // 检测表单是否为空，若是则报错
