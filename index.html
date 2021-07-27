@@ -12,14 +12,14 @@
 </head>
 
 <body id="setdarkmodeclass" class="mdui-theme-primary-deep-purple mdui-theme-accent-indigo">
-    <div class="mdui-container mdui-typo">
-        <div class="mdui-card">
+        <div class="mdui-container mdui-typo">
+        <div class="mdui-card mdui-m-t-2">
             <!-- 卡片的标题和副标题 -->
             <div class="mdui-card-primary">
-                <div class="mdui-card-primary-title">MDUI SubGUI</div>
+                <div class="mdui-card-primary-title mdui-text-color-theme">MDUI SubGUI</div>
                 <div class="mdui-card-primary-subtitle">subconverter的可视化使用界面</div>
                 <div class="mdui-card-menu mdui-m-t-1">
-                    0.0.2
+                    0.0.4
                 </div>
             </div>
             <div class="mdui-divider"></div>
@@ -27,27 +27,26 @@
             <div class="mdui-card-content">
 
                 <div>
-                    <h3>说明</h3>
-                    <p>1.后端使用<a href="/tindy2013/subconverter">subconverter</a><br>2.源订阅链接支持类型: Clash
-                        ，ClashR
-                        ，Quantumult (完整配置)
-                        ，Quantumult X (完整配置)
-                        ，Loon
-                        ，Mellow
-                        ，SS (SIP002)
-                        ，SS (软件订阅)
-                        ，SSD
-                        ，SSR
-                        ，Surfboard
-                        ，Surge
-                        ，Surge
-                        ，Surge
-                        ，Trojan
-                        ，V2Ray
-                        <br>3.请勿滥用，若遇频繁请求则可能封IP
+                    <h3 class="mdui-text-color-theme">说明</h3>
+                    <p>如果您不知道这是什么，请不要调节您不知道的选项。<br>您需要选择您对应客户端的软件，然后在下方选择"目标客户端"选择您的软件，并点击生成订阅链接，并将订阅链接导入至软件中。
                     </p>
-                    <h3>配置</h3>
+                    <h3 class="mdui-text-color-theme">配置</h3>
                     <div class="mdui-row">
+
+                        <div class="mdui-textfield mdui-textfield-floating-label mdui-col-sm-6 mdui-hidden">
+                            <h5>源订阅链接</h5>
+                            <i class="mdui-icon material-icons">insert_link</i>
+                            <label class="mdui-textfield-label">填写订阅链接或 ss:// 等节点链接</label>
+                            <input class="mdui-textfield-input" type="text" id="subinput" value="{$subInfo['clash']}"
+                                disabled />
+                        </div>
+                        <div class="mdui-textfield mdui-textfield-floating-label mdui-col-sm-12">
+                            <h5>配置文件名称</h5>
+                            <i class="mdui-icon material-icons">flag</i>
+                            <label class="mdui-textfield-label">作为clash等策略组软件的配置文件名</label>
+                            <input class="mdui-textfield-input" type="text" id="subNameInput"
+                                value="{$config['appName']}" />
+                        </div>
 
                         <div class="mdui-textfield mdui-textfield-floating-label mdui-col-sm-6">
                             <h5>源订阅链接</h5>
@@ -62,61 +61,12 @@
                             <input class="mdui-textfield-input" type="text" id="subNameInput" value="sub" />
                         </div>
                     </div>
-                    <div class="mdui-row">
-                        <form name="subInputform">
-                            <div class="mdui-col-sm-3 mdui-col-md-2">
-                                <h5>后端地址</h5>
-                                <select id="subServerSideInputSelect" class="mdui-select"
-                                    mdui-select="{position: 'top'}">
-                                    <option value="subapi.666old666.cn">落日余晖</option>
-                                    <option value="subcon.dlj.tf">subconverter作者</option>
-                                    <option value="api.v1.mk">肥羊</option>
-                                    <option value="api.wcc.best">sub-web作者</option>
-                                    <option value="sub.id9.cc">品云</option>
-                                    <option value="">自定义</option>
-                                </select>
-                            </div>
-                            <div class="mdui-textfield mdui-textfield-floating-label mdui-col-sm-3 mdui-col-md-4"
-                                style="margin-top: 13px">
 
-                                <label class="mdui-textfield-label">自定义后端url</label>
-                                <input class="mdui-textfield-input" type="text" id="subServerSideInput"
-                                    value="subapi.666old666.cn" />
-
-                            </div>
-                            <div class="mdui-col-sm-3  mdui-col-md-2">
-                                <h5 mdui-tooltip="{content: '仅对含策略组的软件生效', position: 'top'}">远程配置</h5>
-                                <select id="subConfigInputSelect" class="mdui-select" mdui-select="{position: 'top'}">
-                                    <option
-                                        value="https://github.com/RSSYLY/rssylySCTrules/raw/master/config/rssyly1.ini">
-                                        RSSYLY默认</option>
-                                    <option value="https://cdn.staticaly.com/gh/lhl77/sub-ini/main/tsutsu-full.ini">つつ
-                                    </option>
-                                    <option
-                                        value="https://raw.githubusercontent.com/hyt-allen-xu/webcdn/master/smallairport.ini">
-                                        AllenXu小机场</option>
-                                    <option
-                                        value="https://cdn.staticaly.com/gh/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online.ini">
-                                        ACL4SSR默认</option>
-                                    <option
-                                        value="https://cdn.staticaly.com/gh/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_AdblockPlus.ini">
-                                        ACL4SSR去广告</option>
-
-                                    <option value="">自定义</option>
-                                </select>
-                            </div>
-                            <div class="mdui-textfield mdui-textfield-floating-label mdui-col-sm-3 mdui-col-md-4"
-                                style="margin-top: 13px">
-
-                                <label class="mdui-textfield-label">文件路径或内容</label>
-                                <input class="mdui-textfield-input" type="text" id="subConfigInput" value="" />
-                            </div>
-                        </form>
-                    </div>
                     <div class="mdui-row">
                         <div class="mdui-col-sm-3">
                             <h5>输出类型</h5>
-                            <select id="subOutputType" class="mdui-select" mdui-select="{position: 'top'}">
+                            <select id="subOutputType" class="mdui-select" mdui-select>
+                                <option value="&target=auto">自动识别</option>
                                 <option value="&target=clash">Clash</option>
                                 <option value="&target=v2ray">V2ray</option>
                                 <option value="&target=surfboard">Surfboard</option>
@@ -134,34 +84,102 @@
                         <div class="mdui-col-sm-9">
                             <h5>配置更新间隔(秒)</h5>
                             <label class="mdui-slider mdui-slider-discrete" style="margin-top: 3px">
-                                <input id="intervalValueSlider" type="range" step="3600" min="0" max="432000"/>
+                                <input id="intervalValueSlider" type="range" step="3600" min="0" max="432000" />
                             </label>
                         </div>
 
                     </div>
 
                     <div class="mdui-row">
-                        <div class="mdui-col-sm-4">
-                            <h5>启用UDP </h5>
-                            <label class="mdui-switch">
-                                <input id="udpEnableSwich" type="checkbox" />
-                                <i class="mdui-switch-icon"></i>
-                            </label>
-                        </div>
-                        <div class="mdui-col-sm-4">
-                            <h5>节点名添加emoji国旗 </h5>
-                            <label class="mdui-switch">
-                                <input id="addemojiEnableSwich" type="checkbox" checked />
-                                <i class="mdui-switch-icon"></i>
-                            </label>
-                        </div>
-                        <div class="mdui-col-sm-4">
-                            <h5>节点名添加协议类型 </h5>
-                            <label class="mdui-switch">
-                                <input id="appendtypeEnableSwich" type="checkbox" />
-                                <i class="mdui-switch-icon"></i>
-                            </label>
-                        </div>
+                        <div class="mdui-panel" mdui-panel style="margin-top: 13px">
+
+                            <div class="mdui-panel-item">
+                                <div class="mdui-panel-item-header">
+                                    <div class="mdui-panel-item-title">高级设置</div>
+                                    <div class="mdui-panel-item-summary">不懂别乱动</div>
+                                    <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+                                </div>
+                                <div class="mdui-panel-item-body">
+
+                                    <form name="subInputform">
+                                        <div class="mdui-col-sm-3 mdui-col-md-2">
+                                            <h5>后端地址</h5>
+                                            <select id="subServerSideInputSelect" class="mdui-select">
+                                                <option value="subapi.666old666.cn">余晖无垠</option>
+                                                <option value="subcon.dlj.tf">subconverter作者</option>
+                                                <option value="api.v1.mk">肥羊</option>
+                                                <option value="api.wcc.best">sub-web作者</option>
+                                                <option value="sub.id9.cc">品云</option>
+                                                <option value="">自定义</option>
+                                            </select>
+                                            <script>var inst = new mdui.Select('#subServerSideInputSelect', { position: 'bottom' });</script>
+                                        </div>
+                                        <div class="mdui-textfield mdui-textfield-floating-label mdui-col-sm-3 mdui-col-md-4"
+                                            style="margin-top: 13px">
+
+                                            <label class="mdui-textfield-label">自定义后端url</label>
+                                            <input class="mdui-textfield-input" type="text" id="subServerSideInput"
+                                                value="subapi.666old666.cn" />
+
+                                        </div>
+                                        <div class="mdui-col-sm-3 mdui-col-md-2">
+                                            <h5>远程配置<i id="subConfigInputSelectToolTip"
+                                                    class="mdui-icon material-icons">help_outline</i></h5>
+                                            <script>var inst = new mdui.Tooltip('#subConfigInputSelectToolTip', {
+                                                    content: '指远程 pref.ini (包含分组和规则部分)'
+                                                });</script>
+                                            <select id="subConfigInputSelect" class="mdui-select">
+                                                <option
+                                                    value="https://github.com/RSSYLY/rssylySCTrules/raw/master/config/rssyly1.ini">
+                                                    RSSYLY默认</option>
+                                                <option
+                                                    value="https://cdn.staticaly.com/gh/lhl77/sub-ini/main/tsutsu-full.ini">
+                                                    つつ
+                                                </option>
+                                                <option
+                                                    value="https://raw.githubusercontent.com/hyt-allen-xu/webcdn/master/smallairport.ini">
+                                                    AllenXu小机场</option>
+                                                <option
+                                                    value="https://cdn.staticaly.com/gh/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online.ini">
+                                                    ACL4SSR默认</option>
+                                                <option
+                                                    value="https://cdn.staticaly.com/gh/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_AdblockPlus.ini">
+                                                    ACL4SSR去广告</option>
+
+                                                <option value="">自定义</option>
+                                            </select>
+                                            <script>var inst = new mdui.Select('#subConfigInputSelect', { position: 'bottom' });</script>
+                                        </div>
+                                        <div class="mdui-textfield mdui-textfield-floating-label mdui-col-sm-3 mdui-col-md-4"
+                                            style="margin-top: 13px">
+
+                                            <label class="mdui-textfield-label">文件路径或内容</label>
+                                            <input class="mdui-textfield-input" type="text" id="subConfigInput"
+                                                value="" />
+                                        </div>
+                                    </form>
+
+                                    <div class="mdui-col-sm-4">
+                                        <h5>启用UDP </h5>
+                                        <label class="mdui-switch">
+                                            <input id="udpEnableSwich" type="checkbox" />
+                                            <i class="mdui-switch-icon"></i>
+                                        </label>
+                                    </div>
+                                    <div class="mdui-col-sm-4">
+                                        <h5>节点名添加emoji国旗 </h5>
+                                        <label class="mdui-switch">
+                                            <input id="addemojiEnableSwich" type="checkbox" checked />
+                                            <i class="mdui-switch-icon"></i>
+                                        </label>
+                                    </div>
+                                    <div class="mdui-col-sm-4">
+                                        <h5>节点名添加协议类型 </h5>
+                                        <label class="mdui-switch">
+                                            <input id="appendtypeEnableSwich" type="checkbox" />
+                                            <i class="mdui-switch-icon"></i>
+                                        </label>
+                                    </div>
                                     <div class="mdui-col-sm-4">
                                         <h5>TCP Fast Open</h5>
                                         <label class="mdui-switch">
@@ -172,19 +190,33 @@
                                     <div class="mdui-col-sm-4">
                                         <h5>过滤目标类型不支持的节点</h5>
                                         <label class="mdui-switch">
-                                            <input id="fdnEnableSwich" type="checkbox" checked/>
+                                            <input id="fdnEnableSwich" type="checkbox" checked />
                                             <i class="mdui-switch-icon"></i>
                                         </label>
                                     </div>
                                     <div class="mdui-col-sm-4">
-                                        <h5>开启 tls1.3</h5>
+                                        <h5>启用 tls1.3</h5>
                                         <label class="mdui-switch">
                                             <input id="tls13EnableSwich" type="checkbox" />
                                             <i class="mdui-switch-icon"></i>
                                         </label>
                                     </div>
+                                    <div class="mdui-col-sm-4">
+                                        <h5>List <i id="listToolTip" class="mdui-icon material-icons">help_outline</i>
+                                        </h5>
+                                        <label class="mdui-switch">
+                                            <input id="listEnableSwich" type="checkbox" />
+                                            <i class="mdui-switch-icon"></i>
+                                        </label>
+                                        <script>var inst = new mdui.Tooltip('#listToolTip', {
+                                                content: '用于输出 Surge Node List 或者 Clash Proxy Provider 或者 Quantumult (X) 的节点订阅 或者 解码后的 SIP002'
+                                            });</script>
+                                    </div>
                                 </div>
+                            </div>
+                        </div>
 
+                    </div>
 
 
 
@@ -217,121 +249,134 @@
                 <button class="mdui-btn mdui-ripple" id="copyBtn">复制</button>
             </div>
         </div>
-    </div>
+        <script>document.getElementById('subbtn').addEventListener('click', function () {
+
+                // 定义变量 值为后端地址
+                var subServerSide = document.getElementById("subServerSideInput").value;
+
+                //定义变量，值为输入源订阅链接表单
+                var inPut = document.getElementById("subinput").value;
+
+                // 定义变量，值为生成配置文件名
+                var subName = "&filename=" + document.getElementById("subNameInput").value;
+
+                // 定义变量 值为远程配置
+                var subConfig = document.getElementById("subConfigInput").value;
+                // 值若为空，则赋值使用默认配置文件
+                if (subConfig == null || subConfig == "") {
+                    var subConfig = "https://github.com/RSSYLY/rssylySCTrules/raw/master/config/rssyly1.ini"
+                }
+
+
+                // 定义变量，设置输出类型
+                var outPutType = document.getElementById("subOutputType").value;
+
+                // 定义变量，设置 udp 开关
+                var udpEnable = "&udp=" + document.getElementById("udpEnableSwich").checked;
+
+                // 定义变量 设置 节点前添加emoji国旗
+                var addemojiEnable = "&add_emoji=" + document.getElementById("addemojiEnableSwich").checked;
+
+                // 定义变量 设置 节点前加节点协议类型
+                var appendtypeEnable = "&append_type=" + document.getElementById("appendtypeEnableSwich").checked;
+
+                // 定义变量 设置 节点TCP Fast Open 是否启用
+                var tfoEnable = "&tfo=" + document.getElementById("tfoEnableSwich").checked;
+
+                // 定义变量 设置 过滤不支持的节点 是否启用
+                var fdnEnable = "&fdn=" + document.getElementById("fdnEnableSwich").checked;
+
+                // 定义变量 设置 tls1.3 是否启用
+                var tls13Enable = "&tls13=" + document.getElementById("tls13EnableSwich").checked;
+
+                // 定义变量 设置 list 是否启用
+                var listEnable = "&list=" + document.getElementById("listEnableSwich").checked;
+
+
+                // 检测表单是否为空，若是则报错
+                if (inPut == null || inPut == "") {
+                    mdui.snackbar({
+                        message: '错误:请填写源链接',
+                        position: 'right-top'
+                    });
+                    return false;
+                }
+
+                // 定义变量 值为更新间隔 秒
+
+                var intervalValue = "&interval=" + document.getElementById("intervalValueSlider").value;
+
+
+                // 定义新对话框
+                var inst = new mdui.Dialog('#subapi');
+
+                // 定义函数，值为后端地址 &target=clash
+                var sub = "https://" + subServerSide + "/sub?insert=true&emoji=true&list=false&url="
+
+                // 合并订阅链接
+                inPut = sub + encodeURIComponent(inPut) + outPutType + udpEnable + subName + addemojiEnable + appendtypeEnable + "&config=" + encodeURIComponent(subConfig) + intervalValue + tfoEnable + fdnEnable + tls13Enable + listEnable;
+
+                // 将输出链接写入对话框的表单
+                outputform.outputinput.value = inPut;
+
+                // 打开对话框
+                inst.open();
+            });
+        </script>
 
 
 
+        <script>
+            // 复制生成链接
+            const btn = document.querySelector('#copyBtn');
+            btn.addEventListener('click', () => {
+                const input = document.querySelector('#output');
+                input.select();
+                if (document.execCommand('copy')) {
+                    document.execCommand('copy');
+                    mdui.snackbar({
+                        message: '已复制至剪切板',
+                        position: 'right-top'
+                    });
+                }
+            })</script>
+        <script>
+            // 触发事件,当后端地址subServerSideInputSelect下拉选择关闭时
 
+            $('#subServerSideInputSelect').on('close.mdui.select', function () {
+                var subServerSideInputSelect_value = document.getElementById("subServerSideInputSelect").value;
 
-    <script>document.getElementById('subbtn').addEventListener('click', function () {
+                // 将预设后端地址写入后端地址的表单，格式 formName.inputID.value = xxx 
+                subInputform.subServerSideInput.value = subServerSideInputSelect_value;
 
-            // 定义变量 值为后端地址
-            var subServerSide = document.getElementById("subServerSideInput").value;
+                if (subServerSideInputSelect_value == null || subServerSideInputSelect_value == "") {
+                    // document.getElementsByClassName()[1].setAttribute("","")
+                    document.getElementById("subServerSideInput").removeAttribute("disabled")
+                } else {
 
-            //定义变量，值为输入源订阅链接表单
-            var inPut = document.getElementById("subinput").value;
+                    document.getElementById("subServerSideInput").setAttribute("disabled", "3");
+                }
 
-            // 定义变量，值为生成配置文件名
-            var subName = "&filename=" + document.getElementById("subNameInput").value;
+            });
 
-            // 定义变量 值为远程配置
-            var subConfig = document.getElementById("subConfigInput").value;
-            // 值若为空，则赋值使用默认配置文件
-            if (subConfig == null || subConfig == "") {
-                var subConfig = "https://github.com/RSSYLY/rssylySCTrules/raw/master/config/rssyly1.ini"
-            }
+            // 触发事件,当后端地址subServerSideInputSelect下拉选择关闭时
+            $('#subConfigInputSelect').on('close.mdui.select', function () {
+                var subConfigInputSelect_value = document.getElementById("subConfigInputSelect").value;
 
+                // 将预设后端地址写入后端地址的表单，格式 formName.inputID.value = xxx 
+                subInputform.subConfigInput.value = subConfigInputSelect_value;
 
-            // 定义变量，设置输出类型
-            var outPutType = document.getElementById("subOutputType").value;
+                if (subConfigInputSelect_value == null || subConfigInputSelect_value == "") {
+                    // document.getElementsByClassName()[1].setAttribute("","")
+                    document.getElementById("subConfigInput").removeAttribute("disabled")
+                } else {
 
-            // 定义变量，设置 udp 开关
-            var udpEnable = "&udp=" + document.getElementById("udpEnableSwich").checked;
+                    document.getElementById("subConfigInput").setAttribute("disabled", "3");
+                }
 
-            // 定义变量 设置 节点前添加emoji国旗
-            var addemojiEnable = "&add_emoji=" + document.getElementById("addemojiEnableSwich").checked;
-
-            // 定义变量 设置 节点前加节点协议类型
-            var appendtypeEnable = "&append_type=" + document.getElementById("appendtypeEnableSwich").checked;
-            
-                                // 定义变量 设置 节点TCP Fast Open 是否启用
-                                var tfoEnable = "&tfo=" + document.getElementById("tfoEnableSwich").checked;
-
-                                // 定义变量 设置 过滤不支持的节点 是否启用
-                                var fdnEnable = "&fdn=" + document.getElementById("fdnEnableSwich").checked;
-
-                                // 定义变量 设置 tls1.3 是否启用
-                                var tls13Enable = "&tls13=" + document.getElementById("tls13EnableSwich").checked;
-
-
-            // 检测表单是否为空，若是则报错
-            if (inPut == null || inPut == "") {
-                mdui.snackbar({
-                    message: '错误:请填写源链接',
-                    position: 'right-top'
-                });
-                return false;
-            }
-
-            // 定义变量 值为更新间隔 秒
-            
-            var intervalValue = "&interval=" + document.getElementById("intervalValueSlider").value;
-
-
-            // 定义新对话框
-            var inst = new mdui.Dialog('#subapi');
-
-            // 定义函数，值为后端地址 &target=clash
-            var sub = "https://" + subServerSide + "/sub?insert=true&emoji=true&list=false&url="
-
-            // 合并订阅链接
-            inPut = sub + encodeURIComponent(inPut) + outPutType + udpEnable + subName + addemojiEnable + appendtypeEnable + "&config=" + encodeURIComponent(subConfig) + intervalValue + tfoEnable + fdnEnable + tls13Enable;
-
-            // 将输出链接写入对话框的表单
-            outputform.outputinput.value = inPut;
-
-            // 打开对话框
-            inst.open();
-        });
-    </script>
-
-    <script type="text/javascript">
-        /*判断是否处于深色模式*/
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            //Do some thing
-            //测试用 console.log('点击了元素');
-            //js添加指定id的class
-            document.getElementById("setdarkmodeclass").classList.add("mdui-theme-layout-dark");
-            // document.getElementById("left-drawer").classList.add(//"mystyle", "anotherClass","mdui-theme-layout-dark");
-            //js删除指定id的class
-            // document.getElementById("setdarkmodeclass2").classList.remove("mdui-color-theme-800");
-            // document.getElementById("left-drawer").classList.remove("mdui-color-white");
-            // document.getElementById("setdarkmodesetting").classList.remove("setdarkmodesetting");
-
-        }</script>
-    <script type="text/javascript">function switchserve() {
-            var divP = document.getElementById("mainsb");
-            document.write("")
-        }
-    </script>
-    <script>
-        // 复制生成链接
-        const btn = document.querySelector('#copyBtn');
-        btn.addEventListener('click', () => {
-            const input = document.querySelector('#output');
-            input.select();
-            if (document.execCommand('copy')) {
-                document.execCommand('copy');
-                mdui.snackbar({
-                    message: '已复制至剪切板',
-                    position: 'right-top'
-                });
-            }
-        })</script>
-    <script>
-        // 触发事件,当后端地址subServerSideInputSelect下拉选择关闭时
-
-        $('#subServerSideInputSelect').on('close.mdui.select', function () {
+            });
+        </script>
+        <script>
             var subServerSideInputSelect_value = document.getElementById("subServerSideInputSelect").value;
 
             // 将预设后端地址写入后端地址的表单，格式 formName.inputID.value = xxx 
@@ -345,10 +390,6 @@
                 document.getElementById("subServerSideInput").setAttribute("disabled", "3");
             }
 
-        });
-
-        // 触发事件,当后端地址subServerSideInputSelect下拉选择关闭时
-        $('#subConfigInputSelect').on('close.mdui.select', function () {
             var subConfigInputSelect_value = document.getElementById("subConfigInputSelect").value;
 
             // 将预设后端地址写入后端地址的表单，格式 formName.inputID.value = xxx 
@@ -362,38 +403,8 @@
                 document.getElementById("subConfigInput").setAttribute("disabled", "3");
             }
 
-        });
-    </script>
-    <script>
-        var subServerSideInputSelect_value = document.getElementById("subServerSideInputSelect").value;
-
-        // 将预设后端地址写入后端地址的表单，格式 formName.inputID.value = xxx 
-        subInputform.subServerSideInput.value = subServerSideInputSelect_value;
-
-        if (subServerSideInputSelect_value == null || subServerSideInputSelect_value == "") {
-            // document.getElementsByClassName()[1].setAttribute("","")
-            document.getElementById("subServerSideInput").removeAttribute("disabled")
-        } else {
-
-            document.getElementById("subServerSideInput").setAttribute("disabled", "3");
-        }
-
-        var subConfigInputSelect_value = document.getElementById("subConfigInputSelect").value;
-
-        // 将预设后端地址写入后端地址的表单，格式 formName.inputID.value = xxx 
-        subInputform.subConfigInput.value = subConfigInputSelect_value;
-
-        if (subConfigInputSelect_value == null || subConfigInputSelect_value == "") {
-            // document.getElementsByClassName()[1].setAttribute("","")
-            document.getElementById("subConfigInput").removeAttribute("disabled")
-        } else {
-
-            document.getElementById("subConfigInput").setAttribute("disabled", "3");
-        }
-
-    </script>
-
-    <script src="https://cdn.bootcdn.net/ajax/libs/mdui/1.0.1/js/mdui.min.js"></script>
+        </script>
+    </div>
 
 </body>
 
